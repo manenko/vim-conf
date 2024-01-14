@@ -102,6 +102,15 @@ set pumheight=10
 
 set completeopt=menu,menuone,noinsert
 
+# Perform spell checks.
+#
+# ]s - navigate to the next misspelled word,
+# [s - navigate to the previous misspelled word,
+# z= - show spelling suggestions for the word under the cursor,
+# zg - add the word under the cursor as a good word to the local dictionary,
+# zw - remove the word under the cursor from the local dictionary.
+set spell
+
 # Enable mouse
 set mouse=a
 
