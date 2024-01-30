@@ -35,6 +35,7 @@ Plug 'tpope/vim-rails'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'github/copilot.vim'
+Plug 'imsnif/kdl.vim'
 call plug#end()
 
 if !exists('g:syntax_on')
@@ -121,9 +122,9 @@ set listchars=tab:\ \ ,trail:·
 # Set the terminal cursor shape depending on the current mode.
 # Set IBeam shape in insert mode, underline shape in replace mode and
 # block shape in normal mode.
-legacy let &t_SI="\e[6 q"
-legacy let &t_SR="\e[4 q"
-legacy let &t_EI="\e[2 q"
+&t_SI = "\e[6 q"
+&t_SR = "\e[4 q"
+&t_EI = "\e[2 q"
 
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 
@@ -172,4 +173,5 @@ nmap <Leader>lf :Files<CR>
 
 nmap <Leader>gd :ALEGoToDefinition<CR>
 nmap <Leader>ca :ALECodeAction<CR>
+nmap <Leader>ch :ALEHover<CR>
 
