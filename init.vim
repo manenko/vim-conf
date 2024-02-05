@@ -133,8 +133,11 @@ autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 set background=light
 colorscheme xcodelighthc
 
-# Make sure Vim inherits environment variables from my shell
+# Make sure Vim inherits environment variables from my shell.
 set shell=/bin/zsh
+
+# Disable braces and parens highlighting.
+g:loaded_matchparen = 1
 
 # ------------------------------------------------------------------------------
 # Rust config
@@ -158,6 +161,20 @@ g:deoplete#enable_at_startup     = 1
 g:airline#extensions#ale#enabled = 1
 
 # ------------------------------------------------------------------------------
+# Custom commands
+# ------------------------------------------------------------------------------
+function WriteCreatingDirs()
+  let l:file=expand("%")
+  if empty(getbufvar(bufname("%"), '&buftype')) && l:file !~# '\v^\w+\:\/'
+    let dir=fnamemodify(l:file, ':h')
+    if !isdirectory(dir)
+      call mkdir(dir, 'p')
+    endif
+  endif
+  write
+endfunction
+
+# ------------------------------------------------------------------------------
 # Key bindings
 # ------------------------------------------------------------------------------
 
@@ -175,3 +192,4 @@ nmap <Leader>gd :ALEGoToDefinition<CR>
 nmap <Leader>ca :ALECodeAction<CR>
 nmap <Leader>ch :ALEHover<CR>
 
+command W call WriteCreatingDirs()
