@@ -34,9 +34,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-ruby/vim-ruby'
-Plug 'github/copilot.vim'
 Plug 'imsnif/kdl.vim'
 call plug#end()
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 if !exists('g:syntax_on')
   syntax enable
@@ -128,10 +131,14 @@ set listchars=tab:\ \ ,trail:·
 
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 
-#set background=dark
+set background=dark
+#colorscheme onedark
+colorscheme xcodedarkhc
 #colorscheme retrobox
-set background=light
-colorscheme xcodelighthc
+#set background=light
+#colorscheme xcodelighthc
+
+syntax off
 
 # Make sure Vim inherits environment variables from my shell.
 set shell=/bin/zsh
@@ -159,6 +166,13 @@ g:ale_virtualtext_cursor         = 'current'
 g:ale_hover_cursor               = 0
 g:deoplete#enable_at_startup     = 1
 g:airline#extensions#ale#enabled = 1
+
+# Enable all features by default for LSP
+g:ale_rust_analyzer_config = {
+  'cargo': {
+    'features': 'all'
+  }
+}
 
 # ------------------------------------------------------------------------------
 # Custom commands
