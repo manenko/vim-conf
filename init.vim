@@ -20,7 +20,11 @@ vim9script
 # Boston, MA 02110-1301, USA.
 
 call plug#begin()
+Plug 'Shougo/deoplete.nvim'
 Plug 'dense-analysis/ale'
+Plug 'github/copilot.vim'
+Plug 'markonm/traces.vim'
+Plug 'imsnif/kdl.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -28,13 +32,10 @@ Plug 'lunacookies/vim-colors-xcode'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'rust-lang/rust.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-ruby/vim-ruby'
-Plug 'imsnif/kdl.vim'
+Plug 'vlime/vlime', {'rtp': 'vim/'}
 call plug#end()
 
 if (has("termguicolors"))
@@ -132,19 +133,13 @@ set listchars=tab:\ \ ,trail:·
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 
 set background=dark
-#colorscheme onedark
 colorscheme xcodedarkhc
-#colorscheme retrobox
-#set background=light
-#colorscheme xcodelighthc
-
-syntax off
 
 # Make sure Vim inherits environment variables from my shell.
 set shell=/bin/zsh
 
 # Disable braces and parens highlighting.
-g:loaded_matchparen = 1
+#g:loaded_matchparen = 1
 
 # ------------------------------------------------------------------------------
 # Rust config
@@ -202,8 +197,12 @@ nmap <Leader>lg :GFiles<CR>
 nmap <Leader>lb :Buffers<CR>
 nmap <Leader>lf :Files<CR>
 
-nmap <Leader>gd :ALEGoToDefinition<CR>
-nmap <Leader>ca :ALECodeAction<CR>
-nmap <Leader>ch :ALEHover<CR>
+# ALE key bindings
+nmap <Leader>agd :ALEGoToDefinition<CR>
+nmap <Leader>aca :ALECodeAction<CR>
+nmap <Leader>ah  :ALEHover<CR>
+nmap <Leader>ar  :ALERename<CR>
+nmap <Leader>an  :ALENext<CR>zz
+nmap <Leader>ap  :ALEPrevious<CR>zz
 
 command W call WriteCreatingDirs()
